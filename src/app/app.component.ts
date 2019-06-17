@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   template: `
   <div class="tabs">
     <ul class="tab-group">
-      <li *ngFor="let tab of tabs" class="tab" [class.active]="tab.active">
+      <li *ngFor="let tab of tabs; let i = index" class="tab" [class.active]="tab.active" (click)="clickTab(i)">
         <i class="icon" [class]="tab.iconClass"></i>{{tab.title}}
       </li>
     </ul>
@@ -87,4 +87,8 @@ export class AppComponent {
         (e.g. functional programming) styles.`
     }
   ];
+  clickTab(index: number) {
+    this.tabs.forEach(content => content.active = false);
+    this.tabs[index].active = true;
+  }
 }
